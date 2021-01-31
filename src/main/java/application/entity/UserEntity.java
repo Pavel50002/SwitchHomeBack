@@ -27,4 +27,8 @@ import javax.persistence.Table;
         @Column
         private String password;
 
+        @Column
+        private String name;
+        @Column
+        private String second_name;
     }

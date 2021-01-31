@@ -12,4 +12,7 @@ public class RegistrationRequest {
 
     @NotEmpty
     private String password;
+
+    private String name;
+    private String second_name;
 }

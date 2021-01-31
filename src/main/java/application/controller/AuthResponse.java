@@ -4,8 +4,13 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 
 @Data
-@AllArgsConstructor
-public class AuthResponse {
 
+public class AuthResponse {
     private String token;
+    private String name;
+    private String second_name;
+
+    public AuthResponse() {
+
+    }
 }
