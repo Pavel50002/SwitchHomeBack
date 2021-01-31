@@ -7,3 +7,5 @@ SwitchHomeBack
 
 Так же есть аналог на ютюб https://www.youtube.com/watch?v=yRnSUDx3Y8k&ab_channel=EugeneSuleimanov
 его гит https://github.com/proselytear/jwtappdemo/blob/master/src/main/java/net/proselyte/jwtappdemo/security/jwt/JwtTokenProvider.java 
+
+еще https://habr.com/ru/post/278411/ 
