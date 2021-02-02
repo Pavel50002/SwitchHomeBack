@@ -10,12 +10,14 @@ import org.springframework.stereotype.Component;
 import java.time.LocalDate;
 import java.time.ZoneId;
 import java.util.Date;
+import java.util.HashMap;
+import java.util.Map;
 
 @Component
 @Log
 public class JwtProvider {
 
-    @Value("$(jwt.secret)")
+    @Value("${jwt.secret}")
     private String jwtSecret;
 
     @Value("${jwt.token.expired}")
@@ -26,8 +28,11 @@ public class JwtProvider {
         Date now = new Date();
        // Date date = Date.from(LocalDate.now().plusDays(1).atStartOfDay(ZoneId.systemDefault()).toInstant());
         Date validity = new Date(now.getTime() + validityInMilliseconds);
+        Map<String, Object> map = new HashMap<String, Object>();
+        map.put("login", login);
         return Jwts.builder()
                 .setSubject(login)
+                .addClaims(map)
                 //.setSubject(pass)
                 .setExpiration(validity)
                 .signWith(SignatureAlgorithm. HS512, jwtSecret)

@@ -1,7 +1,8 @@
 package application.service;
 
 
-import application.entity.UserEntity;
+import application.model.UserEntity;
+import application.repository.DeviceEntityRepository;
 import application.repository.UserEntityRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
