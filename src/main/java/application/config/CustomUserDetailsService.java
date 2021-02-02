@@ -1,7 +1,7 @@
 package application.config;
 
 
-import application.entity.UserEntity;
+import application.model.UserEntity;
 import application.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetailsService;
