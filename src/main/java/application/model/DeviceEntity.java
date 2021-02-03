@@ -18,7 +18,7 @@ public class DeviceEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
     @Column
-    private Integer ip;
+    private String ip;
 
     @Column
     private String room;

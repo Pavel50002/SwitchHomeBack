@@ -29,16 +29,13 @@ public class DeviceController {
         return deviceEntityRepository.findAll();
     }
 
-    @PostMapping(value = "/p", produces = MediaType.APPLICATION_JSON_VALUE)
-    public DeviceEntity AddUser(@RequestBody DeviceEntity deviceEntity) {
-        DeviceEntity dE = new DeviceEntity();
-        Integer ip = deviceEntity.getIp();
-        dE.setIp(ip);
+    @PostMapping(value = "/device", produces = MediaType.APPLICATION_JSON_VALUE)
+    public DeviceEntity AddDevice(@RequestBody DeviceEntity deviceEntity) {
+        DeviceEntity deviceEntity1 = new DeviceEntity();
+        String ip = deviceEntity.getIp();
+        deviceEntity1.setIp(ip);
 
-
-
-
-        return DeviceEntityRepository.save(dE);
+        return deviceEntityRepository.save(deviceEntity1);
     }
 
 }

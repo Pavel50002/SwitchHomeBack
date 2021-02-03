@@ -13,7 +13,7 @@ import java.awt.*;
 //    @RequestMapping("/register")
     public class stub {
 
-
+@CrossOrigin
         @GetMapping(value = "/stubdevice",produces = MediaType.APPLICATION_JSON_VALUE)
         public String stubdevice(){
             String pp = "{\n" +

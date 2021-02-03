@@ -7,6 +7,7 @@ import application.entity.AuthResponse;
 import application.entity.RegistrationRequest;
 import application.model.UserEntity;
 import application.repository.DeviceEntityRepository;
+import application.repository.UserEntityRepository;
 import application.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -22,7 +23,7 @@ public class AuthController {
     @Autowired
     private JwtProvider jwtProvider;
     @Autowired
-    private DeviceEntityRepository.UserEntityRepository userEntityRepository;
+    private UserEntityRepository userEntityRepository;
 
     @PostMapping("/register")
     public String registerUser(@RequestBody @Valid RegistrationRequest registrationRequest) {
