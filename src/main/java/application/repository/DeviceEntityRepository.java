@@ -6,6 +6,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 
 public interface DeviceEntityRepository extends JpaRepository<DeviceEntity, Integer> {
 
-//        DeviceEntity findById(Integer id);
+  //  public void deleteById(Integer id);
+     //  DeviceEntity findById(Integer id);
     }
 

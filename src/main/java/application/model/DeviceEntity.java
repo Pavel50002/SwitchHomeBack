@@ -16,18 +16,28 @@ import java.util.Date;
 public class DeviceEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer id;
+    public Integer id;
     @Column
-    private String ip;
+    public String ip;
 
     @Column
-    private String room;
+    public String room;
     @Column
-    private String description;
+    public String description;
 
     @Column
-    private int how_much_to_work;
+    public int how_much_to_work;
+
+    public boolean isIs_online() {
+        return is_online;
+    }
+
+    public void setIs_online(boolean is_online) {
+        this.is_online = is_online;
+    }
 
     @Column
-    private boolean is_online;
+    public boolean is_online;
+
+
 }
