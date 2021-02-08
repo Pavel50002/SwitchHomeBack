@@ -62,9 +62,10 @@ public class DeviceController {
     }
 
     //Удаление по айди
-    @DeleteMapping(value = "delDevice", produces = MediaType.APPLICATION_JSON_VALUE)
-    @Transactional
-    public List DeleteDevice(@RequestParam(name = "device_table")Integer dev_id){
+    @CrossOrigin
+    @DeleteMapping(value = "deldevice", produces = MediaType.APPLICATION_JSON_VALUE)
+    //@Transactional
+    public List DeleteDevice(@RequestParam(name = "id")Integer dev_id){
 //        zahodRep.deleteById(user_id);
         deviceEntityRepository.deleteById(dev_id);
         String resp="\"id_delete\":" + dev_id;
