@@ -4,6 +4,9 @@ package application.model;
 import lombok.*;
 
 import javax.persistence.*;
+import java.time.ZoneId;
+import java.time.ZoneOffset;
+import java.time.format.DateTimeFormatter;
 import java.util.Date;
 
 @Getter
@@ -26,7 +29,7 @@ public class DeviceEntity {
     public String description;
 
     @Column
-    public int how_much_to_work;
+    public long how_much_to_work;
 
     public boolean isIs_online() {
         return is_online;
@@ -38,6 +41,10 @@ public class DeviceEntity {
 
     @Column
     public boolean is_online;
+
+    @Column
+    public  Date date;
+
 
 
 }

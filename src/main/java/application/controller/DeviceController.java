@@ -7,9 +7,9 @@ import application.model.DeviceEntity;
 import application.repository.DeviceEntityRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
-import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.Date;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -31,12 +31,12 @@ public class DeviceController {
 
         List<DeviceEntity> entities = deviceEntityRepository.findAll();
         ResponseDevice device = new ResponseDevice(entities);
-        ResponseData responseData=new ResponseData(device);
+        ResponseData responseData = new ResponseData(device);
 
 
 //        return new ResponseData(new ResponseDevice(deviceEntityRepository.findAll()));
         return responseData;
-       // return responseData;
+        // return responseData;
     }
 
     @PostMapping(value = "/device", produces = MediaType.APPLICATION_JSON_VALUE)
@@ -46,17 +46,20 @@ public class DeviceController {
         String ip = deviceEntity.getIp();
         deviceEntity1.setIp(ip);
 
-        String room =deviceEntity.getRoom();
+        String room = deviceEntity.getRoom();
         deviceEntity1.setRoom(room);
 
-        String description=deviceEntity.getDescription();
+        String description = deviceEntity.getDescription();
         deviceEntity1.setDescription(description);
 
-        int time=deviceEntity.getHow_much_to_work();
+        long time = deviceEntity.getHow_much_to_work();
         deviceEntity1.setHow_much_to_work(time);
 
-        boolean isOnline=deviceEntity.isIs_online();
+        boolean isOnline = deviceEntity.isIs_online();
         deviceEntity1.setIs_online(isOnline);
+
+        Date date = deviceEntity.getDate();
+        deviceEntity1.setDate(date);
 
         return deviceEntityRepository.save(deviceEntity1);
     }
@@ -65,16 +68,47 @@ public class DeviceController {
     @CrossOrigin
     @DeleteMapping(value = "deldevice", produces = MediaType.APPLICATION_JSON_VALUE)
     //@Transactional
-    public List DeleteDevice(@RequestParam(name = "id")Integer dev_id){
+    public List DeleteDevice(@RequestParam(name = "id") Integer dev_id) {
 //        zahodRep.deleteById(user_id);
         deviceEntityRepository.deleteById(dev_id);
-        String resp="\"id_delete\":" + dev_id;
-        List list=new LinkedList<>();
+        String resp = "\"id_delete\":" + dev_id;
+        List list = new LinkedList<>();
         list.add(resp);
         list.add(deviceEntityRepository.findAll());
         return list;
     }
 
+    //Редактирование
+    @PutMapping(value = "updatedevice", produces = MediaType.APPLICATION_JSON_VALUE)
+    public DeviceEntity PutDevice(@RequestParam(name = "id") Integer dev_id, @RequestBody DeviceEntity deviceEntity) {
+        DeviceEntity deviceEntity1 = deviceEntityRepository.findById(dev_id).get();
+
+        String ip = deviceEntity.getIp();
+        if(ip!=null){
+        deviceEntity1.setIp(ip);}
+
+        String room = deviceEntity.getRoom();
+        if(room!=null)
+        deviceEntity1.setRoom(room);
+
+        String description = deviceEntity.getDescription();
+        if(description!=null)
+        deviceEntity1.setDescription(description);
+
+        long time = deviceEntity.getHow_much_to_work();
+        if(time!=0)
+        deviceEntity1.setHow_much_to_work(time);
+
+        boolean isOnline = deviceEntity.isIs_online();
+        if(ip!=null)
+        deviceEntity1.setIs_online(isOnline);
+
+        Date date = deviceEntity.getDate();
+        if(ip!=null)
+        deviceEntity1.setDate(date);
+        return deviceEntityRepository.save(deviceEntity1);
+
+    }
 
 
 }
