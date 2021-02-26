@@ -4,7 +4,9 @@ package application.controller;
 import application.entity.ResponseData;
 import application.entity.ResponseDevice;
 import application.model.DeviceEntity;
+import application.model.TimeOnEntity;
 import application.repository.DeviceEntityRepository;
+import application.repository.TimeOnRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
@@ -17,11 +19,23 @@ import java.util.List;
 public class DeviceController {
 
     @Autowired
+
     private final DeviceEntityRepository deviceEntityRepository;
 
-    public DeviceController(DeviceEntityRepository deviceEntityRepository) {
+    public DeviceController(DeviceEntityRepository deviceEntityRepository, TimeOnRepository timeOnRepository) {
         this.deviceEntityRepository = deviceEntityRepository;
+        this.timeOnRepository = timeOnRepository;
     }
+
+
+    @Autowired
+    private final TimeOnRepository timeOnRepository;
+   /* public DeviceController(TimeOnRepository timeOnRepository) {
+        this.timeOnRepository = timeOnRepository;
+    }*/
+
+
+
 
 
     //all device
@@ -107,7 +121,19 @@ public class DeviceController {
         if(ip!=null)
         deviceEntity1.setDate(date);
         return deviceEntityRepository.save(deviceEntity1);
+    }
 
+
+    @PostMapping(value = "/on", produces = MediaType.APPLICATION_JSON_VALUE)
+    public TimeOnEntity AddDevice(@RequestBody TimeOnEntity timeOnEntity) {
+        TimeOnEntity timeOnEntity1= new TimeOnEntity();
+        int hour = timeOnEntity.getHour();
+        timeOnEntity1.setHour(hour);
+
+        int minute =timeOnEntity.getMinute();
+        timeOnEntity1.setMinute(minute);
+
+        return timeOnRepository.save(timeOnEntity1);
     }
 
 

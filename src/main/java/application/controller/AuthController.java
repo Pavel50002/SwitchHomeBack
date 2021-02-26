@@ -36,8 +36,8 @@ public class AuthController {
             u.setPassword(registrationRequest.getPassword());
             u.setLogin(registrationRequest.getLogin());
             userService.saveUser(u);
-            return "Зрегистрирован";
-        } else return "Пользователь с такими данными уже существует";
+            return "Register";
+        } else return "already exists";
     }
 
     @PostMapping("/auth")
